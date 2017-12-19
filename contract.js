@@ -163,7 +163,7 @@ var contract = (function(module) {
 
               var make_attempt = function() {
                 C.web3.eth.getTransactionReceipt(tx, function(err, receipt) {
-                  if (err) return reject(err);
+                  if (err && err.message.match('unknown transaction') === null) return reject(err);
 
                   if (receipt != null) {
                     return accept({
